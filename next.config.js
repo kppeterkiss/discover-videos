@@ -2,5 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
 }
+module.exports = {
+  images: {
+    domains: ['images.unsplash.com'],
+  },
+  nextConfig
+}
 
-module.exports = nextConfig
