@@ -1,11 +1,23 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Banner from '../components/banner/banner'
 import NavBar from '../components/nav/navbar'
-import Card  from '../components/card/card'
+import SectionCards from "../components/card/section-cards"
 
-export default function Home() {
+import {getVideos, getPopularVideos} from "../lib/videos"
+
+export async function getServerSideProps(){
+  const disneyVideos = await getVideos("disney trailer")
+  const productivityVideos = await getVideos("productivity")
+  const travelVideos = await getVideos("travel")
+  const popularVideos = await getPopularVideos()
+
+  return { props: {  disneyVideos, productivityVideos,travelVideos,popularVideos } }
+}
+  
+export default  function Home({disneyVideos, productivityVideos,travelVideos,popularVideos}) {
+  // Assumes a user is already logged in
+
   return (
     <div className={styles.container}>
       <Head>
@@ -14,13 +26,18 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
      
+      <div className={styles.main}>
+      <NavBar username="kp.peter.kiss@gmail.com"/>
+      <Banner title="cliffort the whatever dog" subTitle ="a very cute dog" imgUrl="/static/clifford.webp" videoId="4zH5iYM4wJo"/>
+      <div className={styles.sectionWrapper}>
+        <SectionCards title="Disney" videos={disneyVideos} size="large"/>
+        <SectionCards title="Travel" videos={travelVideos} size="small"/>
+        <SectionCards title="Productivity" videos={productivityVideos} size="medium"/>
+        <SectionCards title="Popular" videos={popularVideos} size="small"/>
       
-      <NavBar username="kppeterkiss@gmsil.com"/>
-      <Banner title="cliffort the whatever dog" subTitle ="a very cute dog" imgUrl="/static/clifford.webp"/>
-      <Card imgUrl="/static/clifford.webp" size="large" />
-      <Card  size="medium" />
-      <Card imgUrl="/static/clifford.webp" size="small" />
 
+      </div>
+      </div>
       
     </div>
   )
