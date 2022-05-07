@@ -17,6 +17,7 @@ const NavBar =  ()=>{
             console.log({didToken})
             if (email){
                 setUsername(email)
+                setDidToken(didToken)
             }
           } catch (error){
             // Handle errors if required!
@@ -26,6 +27,7 @@ const NavBar =  ()=>{
    
     const [showDrpdown,setShowDropdown] = useState(false)
     const [username,setUsername] = useState('')
+    const [didToken, setDidToken] = useState("");
 
     const handleOnClickHome=(e)=>{
         e.preventDefault()
@@ -46,19 +48,25 @@ const NavBar =  ()=>{
     }
 
 
-    const handleSignOut= async (e)=>{
-        e.preventDefault()
+    const handleSignOut = async (e) => {
+        e.preventDefault();
+    
         try {
-            await magic.user.logout();
-            console.log(await magic.user.isLoggedIn()); // => `false`
-            router.push('/login')
-        } catch (error){
-            // Handle errors if required!
-            console.log('error logging out',error)
-            router.push('/login')
+          const response = await fetch("/api/logout", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${didToken}`,
+              "Content-Type": "application/json",
+            },
+          });
+    
+          const res = await response.json();
+        } catch (error) {
+          console.error("Error logging out", error);
+          router.push("/login");
+        }
+      };
 
-          }
-    }
     return (<div className={styles.container}>
         <div className={styles.wrapper}>
             <a className={styles.logoLink} href="/">

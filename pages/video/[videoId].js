@@ -7,7 +7,7 @@ import { getYoutubeVideoById } from '../../lib/videos'
 import NavBar from '../../components/nav/navbar'
 import Like from '../../components/icons/like-icon'
 import DisLike from '../../components/icons/dislike-icon'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 
 Modal.setAppElement('#__next');
 
@@ -70,6 +70,20 @@ const Video = ({ video }) => {
         const response = await runRatingService(favourited)
         console.log("data", await response.json())
     };
+    useEffect(async ()=>{ 
+        const response = await fetch(`/api/stats?videoId=${videoId}`)
+        const data = await response.json()
+        console.log({data})
+        if(data.length>0){
+            const favourited = data[0].favourited
+            if(favourited===1){
+                setToggleLike(true)
+            }else if(favourited===0){
+                setToggleDislike(true)
+            }
+        }
+         
+    },[])
 
     const runRatingService = async(favourited)=>{
         const response = await fetch("/api/stats", {
