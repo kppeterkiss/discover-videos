@@ -1,6 +1,6 @@
 
-import { verifyToken } from '../../lib/util'
-import { findVideoIdByUser, updateStats, insertStats } from '../../lib/db/hasura'
+import { verifyToken } from '../lib/util'
+import { findVideoIdByUser, updateStats, insertStats } from '../lib/db/hasura'
 
 export default async function stats(req, res) {
     try {

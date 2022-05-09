@@ -4,7 +4,7 @@ import Image from "next/image"
 import { useState } from "react";
 import { useRouter } from "next/router";
 import {magic} from '../lib/magic-client'
-import { useEffect } from "react/cjs/react.development";
+import { useEffect } from "react";
 import Link from "next/link";
 
 const Login = () => {
