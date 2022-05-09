@@ -10,13 +10,13 @@ import Loading from '../components/loading/loading';
 
   //for code that we want ot run once befoere any of the other codes
   useEffect( async ()=>{
-    // const isLoggedIn = await magic.user.isLoggedIn()
-    // if(isLoggedIn){
-    //   router.push('/')
-    // }else{
-    //   router.push('/login')
+    const isLoggedIn = await magic.user.isLoggedIn()
+    if(isLoggedIn){
+      router.push('/')
+    }else{
+      router.push('/login')
 
-    // }
+    }
   },[] ) 
 
   useEffect(()=>{

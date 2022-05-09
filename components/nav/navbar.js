@@ -1,9 +1,9 @@
 import styles from "./navbar.module.css"
 import { useRouter } from 'next/router'
-import Link from "next/link"
 import { useState,useEffect } from "react"
 import Image from "next/image"
 import {magic} from "../../lib/magic-client"
+import Link from "next/link"
 
 
 
@@ -67,11 +67,13 @@ const NavBar =  ()=>{
 
     return (<div className={styles.container}>
         <div className={styles.wrapper}>
-            <a className={styles.logoLink} href="/">
+        <Link  href="/">
+            <a className={styles.logoLink}>
                 <div className={styles.logoWrapper}>
                     <Image src="/static/netflix.svg" alt="Netflix logo" width="128px" height="34px"/>
                 </div>
-            </a>           
+            </a> 
+            </Link>          
         <ul className={styles.navItems}>
             <li className={styles.navItem} onClick={handleOnClickHome}>Home</li>
             <li className={styles.navItem2} onClick={handleOnClickMyList}>My List</li>
@@ -83,7 +85,7 @@ const NavBar =  ()=>{
                 {showDrpdown && (<div className={styles.navDropdown}>
                     <div>
                         
-                            <a className={styles.linkName} onClick={handleSignOut}>Sign out</a>
+                     <a className={styles.linkName}onClick={handleSignOut} >Sign out</a>
 
                         
                     <div className={styles.lineWrapper}></div>

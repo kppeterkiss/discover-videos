@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import {magic} from '../lib/magic-client'
 import { useEffect } from "react/cjs/react.development";
+import Link from "next/link";
 
 const Login = () => {
     const router = useRouter()
@@ -83,11 +84,13 @@ const Login = () => {
     </Head>
         <header className={styles.header}>
             <div className={styles.headerWrapper}>
-                <a className={styles.logoLink} href="/">
+                <Link  href="/">
+                <a className={styles.logoLink}>
                     <div className={styles.logoWrapper}>
                         <Image src="/static/netflix.svg" alt="Netflix logo" width="128px" height="34px" />
                     </div>
                 </a>
+                </Link>
             </div>
         </header>
 

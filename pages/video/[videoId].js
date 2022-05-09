@@ -119,7 +119,7 @@ const Video = ({ video }) => {
         >
             <iframe className={styles.videoPlayer} id="ytplayer" type="text/html" width="100%" height="360"
                 src={`https://www.youtube.com/embed/${videoId}?autoplay=0&origin=http://example.com&controls=0&rel=0`}
-                frameborder="0"></iframe>
+                frameBorder="0"></iframe>
             <div className={styles.likeDislikeBtnWrapper}>
                 <div className={styles.likeBtnWrapper}>
                     <button onClick={handleToggleLike}>
